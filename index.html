@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celeste Web Studio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 100px 40px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 15px 40px;
+      z-index: 1000;
+      background: transparent;
+      gap: 50px;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #fff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8em;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #e0e0e0;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-links a:hover {
+      color: #c29fff;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        flex-direction: column;
+        background-color: rgba(18, 18, 18, 0.95);
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+      }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      padding: 160px 40px 40px;
+      background-image: url(Diseño\ sin\ título.gif);
+      background-size: cover;
+      background-position: center;
+      box-sizing: border-box;
+      animation: fadeInOpacity 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeInOpacity {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .branding {
+      max-width: 35%;
+    }
+
+    .branding h1 {
+      font-size: 3em;
+      margin: 0 0 10px;
+      color: #ffffff;
+    }
+
+    .branding p {
+      font-size: 1.2em;
+      color: #c29fff;
+    }
+
+    .swiper {
+      width: 60%;
+      height: 450px;
+      margin-left: 30px;
+      box-sizing: border-box;
+    }
+
+    .swiper-wrapper {
+      display: flex;
+      transition-timing-function: ease !important;
+    }
+
+    .swiper-slide {
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .swiper-slide a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #c29fff;
+      color: #0d0d0d;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .swiper-slide-prev,
+    .swiper-slide-next {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #sobre h2, #contacto h2, #servicios h2 {
+      color: #c29fff;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    #sobre p, #contacto p, #servicios p {
+      font-size: 1.1em;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 140px 20px 20px 20px;
+        height: auto;
+      }
+
+      .branding, .swiper {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+
+    body {
+      background: url(Diseño\ sin\ título.gif) no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    section {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 100px 20px;
+      color: #fff;
+      scroll-snap-align: start;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      padding: 40px 20px;
+      text-align: center;
+      color: #ccc;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+      color: #c29fff;
+      font-size: 1.4em;
+    }
+
+    .redes-sociales a {
+      color: #fff;
+      font-size: 1.8em;
+      margin: 0 20px;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .redes-sociales a:hover {
+      color: #c29fff;
+      transform: scale(1.1);
+    }
+
+    .boton-ws {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #c29fff, #9f6eff);
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.95em;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: pulse 2.5s infinite;
+      box-shadow: 0 4px 12px rgba(194, 159, 255, 0.4);
+    }
+
+    .boton-ws:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(194, 159, 255, 0.5);
+    }
+
+    .boton-ws img {
+      width: 20px;
+      height: 20px;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(194, 159, 255, 0.4);
+      }
+      50% {
+        transform: scale(1.03);
+        box-shadow: 0 6px 18px rgba(194, 159, 255, 0.6);
+      }
+    }
+
+    /* Línea decorativa debajo de cada sección */
+    section::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      margin: 30px auto 0;
+      background: linear-gradient(to right, #c29fff, #9f6eff);
+      border-radius: 5px;
+    }
+
+    /* Mejora de legibilidad en secciones */
+    #sobre p, #contacto p, #servicios p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    #contacto h2 {
+      color: #e6ccff;
+    
+    }
+
+     body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+      background: url(Diseño\ sin\ título.gif) no-repeat center center fixed;
+      background-size: cover;
+    }
+    section {
+      min-height: 100vh;
+      padding: 100px 40px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.4);
+      scroll-snap-align: start;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 15px 40px;
+      z-index: 1000;
+      background: transparent;
+      gap: 50px;
+    }
+    .logo { font-weight: bold; font-size: 1.2em; color: #fff; }
+    .menu-toggle { display: none; font-size: 1.8em; color: #fff; cursor: pointer; }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #e0e0e0;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    .nav-links a:hover { color: #c29fff; }
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        flex-direction: column;
+        background-color: rgba(18, 18, 18, 0.95);
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      }
+      .nav-links.show { display: flex; }
+      .nav-links a { padding: 10px 0; }
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      padding: 160px 40px 40px;
+      background-image: url(Diseño\ sin\ título.gif);
+      background-size: cover;
+      background-position: center;
+      box-sizing: border-box;
+      animation: fadeInOpacity 1.5s ease-out forwards;
+    }
+    @keyframes fadeInOpacity {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .branding { max-width: 35%; }
+    .branding h1 { font-size: 3em; margin: 0 0 10px; color: #ffffff; }
+    .branding p { font-size: 1.2em; color: #c29fff; }
+    .swiper {
+      width: 60%;
+      height: 450px;
+      margin-left: 30px;
+      box-sizing: border-box;
+    }
+    .swiper-wrapper {
+      display: flex;
+      transition-timing-function: ease !important;
+    }
+    .swiper-slide {
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+      width: 100%;
+      margin-right: 0;
+    }
+    .swiper-slide img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .swiper-slide a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #c29fff;
+      color: #0d0d0d;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .swiper-slide-prev,
+    .swiper-slide-next {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #sobre h2, #contacto h2, #servicios h2 {
+      color: #c29fff;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    #sobre p, #contacto p, #servicios p {
+      font-size: 1.1em;
+      max-width: 800px;
+      line-height: 1.6;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .servicio-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .servicio-card {
+      background-color: #1e1e1e;
+      padding: 25px;
+      border-radius: 12px;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+    .servicio-card i {
+      font-size: 2em;
+      color: #c29fff;
+    }
+    .servicio-card h3 {
+      color: #c29fff;
+      margin-top: 15px;
+    }
+    .servicio-card p:last-child {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #bbb;
+    }
+
+    #sobre img {
+  animation: fadeIn 1.5s ease-out forwards;
+  opacity: 0;
+}
+#sobre {
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+img[src*="Imagen_de_WhatsApp_2025-05-02_a_las_11.16.21_a64c234d-removebg-preview (1).png"] {
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 10px;
+  border-radius: 25px;
+  backdrop-filter: blur(3px);
+}
+ .swiper-slide img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+   .demo-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #c29fff;
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 10;
+}
+.btn-servicio {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #7D2AE8;
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-servicio:hover {
+  background-color: #5a1cb4;
+}
+/* Sección de paquetes */
+#paquetes {
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, #2a004f, #1d0142);
+  text-align: center;
+  color: #fff;
+}
+
+.paquetes-titulo {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ebbbff;
+}
+
+.atencion {
+  font-size: 1.2rem;
+  color: #dcb9ff;
+  margin-bottom: 3rem;
+}
+
+.paquete-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.paquete-card {
+  background: #1a0030;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 280px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+.paquete-card.popular {
+  border: 2px solid #9d5bff;
+  box-shadow: 0 0 20px rgba(157, 91, 255, 0.5);
+  background: #140021;
+}
+
+.paquete-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+.paquete-card h3 {
+  font-size: 1.4rem;
+  color: #b37fff;
+  margin-bottom: 0.5rem;
+}
+
+.paquete-card .precio {
+  color: #ccc;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.paquete-card ul {
+  text-align: left;
+  padding-left: 1rem;
+  color: #ccc;
+}
+
+.paquete-card ul li {
+  margin-bottom: 0.5rem;
+  list-style: none;
+}
+
+.paquete-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 0.7rem 1.5rem;
+  background: #8b4dff;
+  color: #fff;
+  border-radius: 2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.paquete-btn:hover {
+  background: #a96cff;
+  transform: scale(1.05);
+}
+
+.badge-popular {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ff4df8;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 1rem;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.boton-ws {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #8b4dff;
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(139, 77, 255, 0.4);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.boton-ws:hover {
+  background-color: #00e676;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.boton-ws img {
+  width: 20px;
+  animation: pulse 1.6s infinite;
+}
+
+.caja-proceso {
+  margin-top: 40px;
+  max-width: 600px;
+  margin-inline: auto;
+  text-align: left;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  padding: 20px 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  color: #ddd;
+  backdrop-filter: blur(6px);
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.caja-proceso {
+  margin-top: 40px;
+  max-width: 600px;
+  margin-inline: auto;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #ddd;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.caja-proceso h3 {
+  color: #e1baff;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.caja-proceso ol {
+  line-height: 1.7;
+  font-size: 1rem;
+  padding-left: 20px;
+}
+
+.caja-proceso li {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+.caja-proceso li:nth-child(1) { animation-delay: 0.3s; }
+.caja-proceso li:nth-child(2) { animation-delay: 0.5s; }
+.caja-proceso li:nth-child(3) { animation-delay: 0.7s; }
+.caja-proceso li:nth-child(4) { animation-delay: 0.9s; }
+
+
+/* Fade in animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.2s;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+/* Contenedor general */
+.sobre-contenedor {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Imagen */
+.sobre-foto {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.sobre-foto img {
+  max-width: 250px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Texto */
+.sobre-texto {
+  flex: 2 1 400px;
+  color: #eee;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.sobre-texto h2 {
+  color: #b886ff;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+/* Botón */
+.boton-ws {
+  display: inline-block;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boton-ws:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #25D366;
+}
+
+/* Texto destacado */
+.resaltado {
+  color: #e1baff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sobre-contenedor {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sobre-texto {
+    text-align: center;
+  }
+
+  .sobre-foto {
+    margin-bottom: 20px;
+  }
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-in.show {
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Animación de fade-in desde abajo */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+  
+  </style>
+
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Celeste Web Studio</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+<nav class="navbar">
+    <div class="logo">Celeste Web Studio</div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+<header>
+  <div class="branding">
+    <h1>Celeste Web Studio</h1>
+    <h2>Portafolio interactivo de proyectos personalizados</h2>
+  </div>
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide" style="position: relative;">
+        <img src="screenshot-1748057380132.png" alt="Make Up Glow">
+        <a href="https://celeli123.github.io/MAKE_UP_GLOW/" target="_blank" class="demo-button">Ver demo</a>
+      </div>
+
+      <div class="swiper-slide" style="position: relative;">
+        <img src="sistemaesc.png" alt="Sistema escolar">
+        <a href="https://sistemaescolarceleste.rf.gd/" target="_blank" class="demo-button">Ver demo</a>
+      </div>
+
+      <div class="swiper-slide" style="position: relative;">
+        <img src="coach.png" alt="Landing">
+        <a href="https://celeli123.github.io/COACH/" target="_blank" class="demo-button">Ver demo</a>
+      </div>
+
+    </div>
+
+    <!-- Controles -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</header>
+
+<section id="sobre" class="fade-in">
+  <div class="sobre-contenedor">
+    
+    <!-- FOTO -->
+    <div class="sobre-foto">
+      <img src="Imagen_de_WhatsApp_2025-05-02_a_las_11.16.21_a64c234d-removebg-preview (1).png" 
+           alt="Foto de Celeste">
+    </div>
+
+    <!-- TEXTO + BOTÓN -->
+    <div class="sobre-texto">
+      <h2>Sobre mí</h2>
+      <p>
+        ¡Hola! Soy <strong class="resaltado">Celeste</strong>, y mi pasión es ayudarte a tener una presencia profesional en internet que hable bien de ti y de tu negocio.<br><br>
+
+        Diseño páginas web modernas, visualmente atractivas y fáciles de usar, pensadas para que tus clientes te encuentren, confíen en ti y te contacten con facilidad.<br><br>
+
+        Ya sea que estés empezando tu marca, tengas un negocio local o quieras vender por internet, te acompaño paso a paso para crear un sitio que refleje lo que haces y te ayude a crecer.<br><br>
+
+        Mi enfoque es claro: <strong>escucharte, entender lo que necesitas y entregarte un sitio funcional, bonito y estratégico</strong>, que realmente te sirva. 📱✨
+      </p>
+
+      <a href="https://wa.me/525528754891" target="_blank" class="boton-ws">
+        Escríbeme por WhatsApp 💬
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Sección: Servicios generales -->
+<section id="servicios">
+  <h2>¿Qué tipo de soluciones ofrezco?</h2>
+  <div class="servicio-grid">
+    <div class="servicio-card">
+      <i class="fas fa-user"></i>
+      <h3>Presencia digital</h3>
+      <p>Páginas informativas, blogs o portafolios para mostrar quién eres o qué haces.</p>
+    
+    </div>
+    <div class="servicio-card">
+      <i class="fas fa-shopping-cart"></i>
+      <h3>Ventas en línea</h3>
+      <p>Tiendas con catálogo, pasarela de pagos y conexión con redes sociales.</p>
+      
+    </div>
+    <div class="servicio-card">
+      <i class="fas fa-lock"></i>
+      <h3>Sistemas personalizados</h3>
+      <p>Plataformas con login, roles de usuario o funcionalidades a la medida.</p>
+      
+    </div>
+    <div class="servicio-card">
+      <i class="fas fa-bullhorn"></i>
+      <h3>Campañas & landings</h3>
+      <p>Landing pages impactantes para captar leads o vender productos concretos.</p>
+     
+    </div>
+    <div class="servicio-card">
+      <i class="fas fa-magic"></i>
+      <h3>Extras creativos</h3>
+      <p>Branding, efectos visuales, SEO básico, animaciones y más.</p>
+      <p>Según cotización</p>
+    </div>
+    <div class="servicio-card">
+      <i class="fas fa-question-circle"></i>
+      <h3>¿No sabes por dónde empezar?</h3>
+      <p>Te asesoro para elegir el servicio ideal según tus metas y presupuesto.</p>
+      <p>Asesoría inicial sin costo</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Paquetes con impacto y urgencia -->
+<section id="paquetes">
+  <h2 class="paquetes-titulo">💥 Paquetes Exclusivos para Lanzar tu Proyecto YA</h2>
+  <p class="atencion">🚨 ¡Atención! Cupo limitado este mes. Asegura tu lugar ahora.</p>
+
+  <div class="paquete-contenedor">
+
+    <!-- PAQUETE DESTACADO -->
+    <div class="paquete-card popular">
+      <span class="badge-popular">¡Más popular!</span>
+      <h3>🔹 Web Completa (Multi-sección)</h3>
+      <p class="precio">Desde <strong>$4,500 - $6,500 MXN</strong></p>
+      <ul>
+        <li>✅ Inicio, Nosotros, Servicios, Contacto</li>
+        <li>✅ Formulario conectado a WhatsApp</li>
+        <li>✅ Galería o portafolio</li>
+        <li>✅ Google Maps integrado</li>
+        <li>✅ Responsive para celulares</li>
+      </ul>
+      <a class="paquete-btn" href="#" onclick="enviarWhatsApp('Web Completa')">✨ Empezar ahora</a>
+    </div>
+
+    <!-- PAQUETE 2 -->
+    <div class="paquete-card">
+      <h3>🌐 Web Informativa</h3>
+      <p class="precio">Desde <strong>$2,500 MXN</strong></p>
+      <ul>
+        <li>✅ 1 sola sección (landing)</li>
+        <li>✅ Sección de servicios </li>
+        <li>✅ Formulario de contacto</li>
+        <li>✅ Responsive para celulares</li>
+      </ul>
+      <a class="paquete-btn" href="#" onclick="enviarWhatsApp('Web Informativa')">Solicitar ahora</a>
+    </div>
+
+    <!-- PAQUETE 3 -->
+    <div class="paquete-card">
+      <h3>🛒 Tienda Online</h3>
+      <p class="precio">Desde <strong>$5,000 - $7,500 MXN</strong></p>
+      <ul>
+        <li>✅ Panel para que administres tus productos </li>
+        <li>✅ Catalogo inicial hasta 10 productos cargados</li>
+        <li>✅ Carrito y pagos (PayPal, MercadoPago)</li>
+        <li>✅ Adaptada a moviles lista para vender</li>
+      </ul>
+     <a class="paquete-btn" href="#" onclick="enviarWhatsApp('Tienda Online')">Solicitar ahora</a>
+    </div>
+
+    <!-- PAQUETE 4 -->
+    <div class="paquete-card">
+      <h3>🔧 Sistema Personalizado</h3>
+      <p class="precio">Desde <strong>$8,500 MXN</strong></p>
+      <ul>
+        <li>✅ Login y roles</li>
+        <li>✅ Panel admin y funciones a medida</li>
+        <li>✅ Acompañamiento técnico</li>
+      </ul>
+      <a class="paquete-btn" href="#" onclick="enviarWhatsApp('Sistema Personalizado')">Solicitar ahora</a>
+    </div>
+
+  </div>
+
+  <p class="paquetes-nota">⬆️ Estos precios están vigentes <strong>sólo por tiempo limitado</strong>.<br>
+    Escríbeme y asegura tu paquete antes de que suban.
+  </p>
+</section>
+
+
+<section id="contacto">
+  <div style="text-align: center;">
+    <h2>Contacto</h2>
+    <p style="color: #ccc; margin-bottom: 10px;">¿Tienes un proyecto en mente? Escríbeme para comenzar a trabajar juntos.</p>
+   
+    <p style="color: #ffd6ff; font-size: 1rem; margin-bottom: 8px;">
+  🚀 ¡Vamos a hacer despegar tu presencia digital!
+</p>
+
+    <a href="https://wa.me/5528754891" target="_blank" class="boton-ws">
+      <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+      Enviar mensaje por WhatsApp
+    </a>
+
+    <div class="caja-proceso">
+      <h3>💬 ¿Cómo trabajamos?</h3>
+      <ol>
+        <li> Platicamos de lo que necesitas (WhatsApp, llamada o en persona).</li>
+        <li> Te hago un demo sin compromiso para que veas cómo quedaría tu web.</li>
+        <li> Definimos el alcance exacto, precio final y calendario de pagos.</li>
+        <li> ¡Manos a la obra! 🥳</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+
+  <footer>
+  <h3>Celeste Web Studio</h3>
+  <!--
+  <div class="redes-sociales">
+    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  </div>
+  -->
+  <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2025 Celeste Web Studio – Todos los derechos reservados.</p>
+</footer>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Swiper JS solo una vez -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<script>
+  // Swiper slider - solo una vez
+  const swiper = new Swiper('.mySwiper', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    speed: 800,
+    effect: 'slide',
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  // Menú responsive
+  function toggleMenu() {
+    const nav = document.querySelector('.nav-links');
+    nav.classList.toggle('show');
+    const icon = document.querySelector('.menu-toggle');
+    icon.textContent = icon.textContent === '☰' ? '✖' : '☰';
+  }
+
+  // Animación fade-in al hacer scroll
+  function mostrarFadeIn() {
+    const elementos = document.querySelectorAll(".fade-in");
+    elementos.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        el.classList.add("show");
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", mostrarFadeIn);
+  window.addEventListener("scroll", mostrarFadeIn);
+
+
+
+
+ function enviarWhatsApp(paquete) {
+  const numero = "525528754891"; // ← Tu número con LADA, sin +
+  let mensaje = "";
+
+  switch(paquete) {
+    case 'Web Completa':
+      mensaje = `Hola Celeste, vi tu portafolio y estoy interesad@ en el paquete *Web Completa*. ¿Cómo comenzamos?`;
+      break;
+    case 'Web Informativa':
+      mensaje = `Hola Celeste, me interesa el paquete *Web Informativa* de $2,500 MXN. ¿Qué necesito para contratarlo?`;
+      break;
+    case 'Tienda Online':
+      mensaje = `Hola Celeste, me gustaría saber más del paquete *Tienda Online*. Quiero vender mis productos.`;
+      break;
+    case 'Sistema Personalizado':
+      mensaje = `Hola Celeste, estoy buscando un *Sistema Personalizado* como los que ofreces. ¿Podríamos hablar para cotizarlo?`;
+      break;
+  }
+
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+}
+
+</script>
+
+
+
+</body>
+</html>
