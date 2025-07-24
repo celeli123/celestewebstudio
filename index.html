@@ -861,15 +861,26 @@ img[src*="Imagen_de_WhatsApp_2025-05-02_a_las_11.16.21_a64c234d-removebg-preview
 .fade-in.show {
   opacity: 1;
   transform: translateY(0);
+} 
+    
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 
-
-  
   </style>
 
 </head>
 <body>
+   <video autoplay muted loop playsinline id="bg-video">
+    <source src="fondo.mp4.mp4" type="video/mp4">
+  </video>
 
   <nav class="navbar">
     <div class="logo">Celeste Web Studio</div>
