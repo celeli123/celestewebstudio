@@ -7,190 +7,124 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
   
 <style>
-/* RESET Y FUENTES */
-* {
+/* ESTILOS BASE CONSERVADOS */
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  background: #0d012b;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0e0e0e url('tu_fondo.gif') no-repeat center center fixed;
+  background-size: cover;
   overflow-x: hidden;
 }
 
-/* HEADER */
 header {
-  width: 100%;
-  padding: 1.5rem;
-  background: linear-gradient(to right, #1e005f, #28056e);
-  position: relative;
-  z-index: 100;
+  padding: 30px;
   text-align: center;
+  color: #fff;
 }
 
 .branding h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  background: linear-gradient(to right, #ffffff, #b489ff);
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .branding h2 {
-  font-size: 1.1rem;
-  margin-top: 0.3rem;
-  color: #e2e2e2;
+  font-weight: 300;
+  font-size: 1.2em;
+  color: #ccc;
 }
 
-/* NAV */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 1rem;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  position: relative;
-  transition: color 0.3s;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: #b489ff;
-  left: 0;
-  bottom: -4px;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease-in-out;
-}
-
-.nav-links a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-/* SWIPER */
+/* Swiper personalizado */
 .swiper {
   width: 100%;
-  max-width: 900px;
-  margin: 2rem auto;
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 .swiper-slide {
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 1rem;
-  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.03);
 }
 
 .swiper-slide img {
   width: 100%;
   height: auto;
-  border-radius: 20px;
-  object-fit: cover;
-  margin-bottom: 1rem;
+  display: block;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
 }
 
 .demo-button {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  padding: 0.8rem 1.5rem;
-  background: rgba(186, 123, 255, 0.9);
-  color: #111;
-  border-radius: 15px;
-  text-decoration: none;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e52e71;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 25px;
   font-weight: bold;
-  box-shadow: 0 5px 15px rgba(186, 123, 255, 0.3);
-  transition: background 0.3s, transform 0.3s;
+  text-decoration: none;
+  transition: background 0.3s ease;
 }
 
 .demo-button:hover {
-  background: #fff;
-  transform: scale(1.05);
+  background: #ff8a00;
 }
 
-.swiper-button-next, .swiper-button-prev {
-  color: #8e61e6;
-  font-weight: bold;
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+  .branding h1 {
+    font-size: 2em;
+  }
+
+  .branding h2 {
+    font-size: 1em;
+  }
+
+  .swiper-slide {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  .demo-button {
+    padding: 6px 14px;
+    font-size: 0.9em;
+  }
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: #0d012b;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 1rem 0;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-    color: #fff;
+@media screen and (max-width: 480px) {
+  header {
+    padding: 15px;
   }
 
   .swiper {
-    max-width: 95%;
+    padding-bottom: 40px;
   }
 
-  .demo-button {
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
-    bottom: 10px;
-    left: 10px;
+  .swiper-slide {
+    width: 95%;
   }
-}
 
-@media (max-width: 480px) {
   .branding h1 {
-    font-size: 1.8rem;
+    font-size: 1.6em;
   }
+
   .branding h2 {
-    font-size: 1rem;
-  }
-  .demo-button {
-    font-size: 0.8rem;
+    font-size: 0.9em;
   }
 }
+
 
 
 </style>
