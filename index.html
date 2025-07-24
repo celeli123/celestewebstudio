@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Celeste Web Studio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+
   <style>
     html {
       scroll-behavior: smooth;
@@ -874,9 +875,45 @@ img[src*="Imagen_de_WhatsApp_2025-05-02_a_las_11.16.21_a64c234d-removebg-preview
 }
 
 
-  </style>
+    /* 👉 Pega esto al final: */
+    @media (max-width: 768px) {
+      .branding h1 {
+        font-size: 1.6rem;
+        text-align: center;
+      }
 
+      .branding h2 {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .swiper {
+        width: 100%;
+        padding: 0 10px;
+      }
+
+      .demo-button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        bottom: 5px;
+        left: 5px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 10px 20px;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+    }
+
+  </style>
 </head>
+  
 <body>
    <video autoplay muted loop playsinline id="bg-video">
     <source src="fondo.mp4.mp4" type="video/mp4">
