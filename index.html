@@ -5,153 +5,180 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Celeste Web Studio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-
+  
 <style>
-     html {
-  scroll-behavior: smooth;
+/* ------------------ GENERAL STYLES ------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0d004d;
-  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  background-color: #000020;
+  color: white;
   overflow-x: hidden;
 }
 
 section {
-  min-height: 100vh;
-  padding: 100px 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 60px 20px;
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 15px 40px;
-  z-index: 1000;
-  background: transparent;
-  gap: 50px;
-}
-
-.branding h1 {
-  font-size: 3rem;
-  margin: 0;
-}
-
-.branding h2 {
-  font-size: 1.3rem;
-  margin: 0;
-}
-
-.swiper {
-  width: 100%;
-  padding: 30px 0;
-}
-
-.swiper-slide {
-  position: relative;
+h1, h2, h3, p {
   text-align: center;
+}
+
+/* ------------------ NAVBAR ------------------ */
+.navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 20px 40px;
+  background: transparent;
+  color: white;
+  z-index: 100;
 }
 
-.swiper-slide img {
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-.demo-button {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  padding: 10px 20px;
-  background-color: #c59eff;
-  border: none;
-  border-radius: 12px;
-  color: #000;
-  font-weight: bold;
-  font-size: 1rem;
+.nav-links a {
+  color: white;
   text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-.demo-button:hover {
-  background-color: #d9bfff;
-}
-
-.video-container {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-#bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.nav-links a:hover {
+  color: #bf94e4;
 }
 
 .menu-toggle {
   display: none;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
-/* 🔽 MEDIA QUERIES PARA CELULARES 🔽 */
+/* ------------------ HERO / HEADER ------------------ */
+.branding h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 100px;
+  text-align: center;
+  color: white;
+}
+
+.branding h2 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #ddd;
+  font-weight: 300;
+}
+
+/* ------------------ SWIPER ------------------ */
+.swiper {
+  width: 100%;
+  padding: 20px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #111;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.swiper-slide img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+}
+
+.demo-button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #bf94e4;
+  border: none;
+  border-radius: 15px;
+  color: black;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+.demo-button:hover {
+  background-color: #dcbfff;
+}
+
+/* ------------------ FOOTER ------------------ */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+/* ------------------ RESPONSIVE ------------------ */
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
   .branding h1 {
     font-size: 2rem;
-    text-align: center;
   }
 
   .branding h2 {
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .swiper {
-    padding: 0 10px;
-  }
-
-  .swiper-slide img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+    font-size: 1.2rem;
   }
 
   .demo-button {
     font-size: 0.9rem;
     padding: 8px 16px;
-    bottom: 10px;
-    left: 10px;
   }
 
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 10px 20px;
-    background-color: rgba(0,0,0,0.5);
+  .swiper-slide img {
+    width: 100%;
   }
+}
 
-  section {
-    padding: 60px 20px;
+/* ------------------ ANIMATIONS ------------------ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
