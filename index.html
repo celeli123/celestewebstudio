@@ -7,180 +7,154 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
   
 <style>
-/* ------------------ GENERAL STYLES ------------------ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* General */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #000020;
-  color: white;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0d004d;
+  color: #fff;
   overflow-x: hidden;
 }
 
+/* Secciones */
 section {
-  padding: 60px 20px;
+  min-height: 100vh;
+  padding: 100px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-h1, h2, h3, p {
-  text-align: center;
-}
-
-/* ------------------ NAVBAR ------------------ */
+/* NAVBAR */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 20px 40px;
+  padding: 15px 40px;
+  z-index: 1000;
   background: transparent;
-  color: white;
-  z-index: 100;
+  gap: 50px;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  color: white;
+.navbar .nav-links a {
+  color: #fff;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #bf94e4;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-/* ------------------ HERO / HEADER ------------------ */
-.branding h1 {
-  font-size: 3rem;
   font-weight: bold;
-  margin-top: 100px;
-  text-align: center;
-  color: white;
+}
+
+.navbar .nav-links a:hover {
+  color: #a18fff;
+}
+
+/* Branding */
+.branding h1 {
+  font-size: 3em;
+  margin: 0;
+  font-weight: bold;
+  text-shadow: 0 0 10px #a18fff;
 }
 
 .branding h2 {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   margin-top: 10px;
-  color: #ddd;
-  font-weight: 300;
 }
 
-/* ------------------ SWIPER ------------------ */
+/* Swiper */
 .swiper {
   width: 100%;
-  padding: 20px 0;
-  position: relative;
-  z-index: 1;
+  max-width: 800px;
+  margin: 60px auto 0 auto;
 }
 
 .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #111;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background-color: #111;
-  border-radius: 20px;
+  position: relative;
+  border-radius: 10px;
   overflow: hidden;
-  padding: 10px;
 }
 
 .swiper-slide img {
   width: 100%;
-  max-width: 600px;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .demo-button {
-  font-size: 1rem;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: #c3a6ff;
+  color: #000;
   padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #bf94e4;
-  border: none;
-  border-radius: 15px;
-  color: black;
-  font-weight: bold;
-  transition: background-color 0.3s;
   text-decoration: none;
+  border-radius: 15px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.demo-button:hover {
-  background-color: #dcbfff;
+/* Swiper buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #7f7fff;
 }
 
-/* ------------------ FOOTER ------------------ */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.8rem;
-  color: #ccc;
-}
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  .branding h1 {
+    font-size: 2.2em;
+    text-align: center;
+  }
 
-/* ------------------ RESPONSIVE ------------------ */
-@media (max-width: 768px) {
+  .branding h2 {
+    font-size: 1em;
+    text-align: center;
+  }
+
   .navbar {
     flex-direction: column;
     align-items: flex-start;
     padding: 10px 20px;
+    background-color: rgba(13, 0, 77, 0.9);
   }
 
-  .nav-links {
-    flex-direction: column;
-    width: 100%;
-    display: none;
-  }
-
-  .nav-links.show {
+  .navbar .nav-links {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
   }
 
-  .menu-toggle {
-    display: block;
-  }
-
-  .branding h1 {
-    font-size: 2rem;
-  }
-
-  .branding h2 {
-    font-size: 1.2rem;
-  }
-
-  .demo-button {
-    font-size: 0.9rem;
-    padding: 8px 16px;
+  .swiper {
+    width: 90%;
   }
 
   .swiper-slide img {
-    width: 100%;
+    height: auto;
+  }
+
+  .demo-button {
+    bottom: 15px;
+    left: 15px;
+    padding: 8px 15px;
+    font-size: 14px;
   }
 }
 
-/* ------------------ ANIMATIONS ------------------ */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 </style>
 </head>
   
